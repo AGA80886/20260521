@@ -1,8 +1,6 @@
 import 'dotenv/config'
 import linebot from 'linebot'
-import commandExrate from './commands/exrate.js'
-import commandWda from './commands/wda.js'
-import commandCourse from './commands/course.js'
+import command2024TaiwanSeries from './commands/2024TaiwanSeries.js'
 
 const bot = linebot({
   channelId: process.env.CHANNEL_ID,
@@ -11,18 +9,10 @@ const bot = linebot({
 })
 
 bot.on('message', (event) => {
-  if (event.message.type === 'text') {
-    if (event.message.text === '匯率') {
-      commandExrate(event)
-    } else if (event.message.text === '職訓') {
-      commandWda(event)
-    }
-  }
-})
+  if (event.message.type !== 'text') return
 
-bot.on('postback', (event) => {
-  if (event.postback.data === 'course') {
-    commandCourse(event)
+  if (event.message.text.startsWith('')) {
+    command2024TaiwanSeries(event)
   }
 })
 
